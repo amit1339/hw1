@@ -43,7 +43,10 @@ class ResearchSample(Item):
         
         :return: True if hazard level is >= 8, False otherwise.
         """
-        return self._hazard_level >= 8
+        if  (self._hazard_level >= 8):
+            return True
+        else:
+            return False
 
     def print_details(self) -> None:
         """
@@ -53,7 +56,3 @@ class ResearchSample(Item):
         print(f"Hazard level: {self._hazard_level}.")
         print(f"Cost: {self.get_price()} credits.")
         print(f"Critical: {self.is_critical()}.")
-
-    """
-    Your code goes here!
-    """

@@ -122,7 +122,9 @@ while True:
         """
         Prints the TOTAL price of all the items in the <station_inventory> list.
         """
-        total_price = sum(item.get_price() for item in station_inventory)
+        total_price: float = 0
+        for item in station_inventory:
+            total_price += item.get_price()
         print(f"The total price is {total_price}.")
 
     elif command == "avg_value":
@@ -132,8 +134,11 @@ while True:
         if len(station_inventory) == 0:
             print("No items in the station inventory.")
         else:
-            avg_price = sum(item.get_price() for item in station_inventory) / len(station_inventory)
-            print(f"The average price is {avg_price:.2f}.")
+            average_price: float = 0
+            for item in station_inventory:
+                average_price = average_price + item.get_price()
+                average_price = average_price / len(station_inventory)
+                print(f"The average price is {average_price:.2f}.")
 
     elif command == "remove":
         """
@@ -152,25 +157,31 @@ while True:
                 print(f"Item #{item_id} was removed from the list.")
                 found = True
                 break
-        if not found:
+        if  found == False:
             print(f"Item #{item_id} was not found in the list.")
 
     elif command == "critical":
         """
         Prints only the critical items in the inventory.
         """
-        critical_items = [item for item in station_inventory if item.is_critical()]
+        critical_items: List[Item] = []
+        for item in station_inventory:
+            if item.is_critical():
+                critical_items.append(item)
+                
         if len(critical_items) == 0:
             print("No critical items in the station inventory.")
         else:
             for item in critical_items:
                 item.print_details()
+
     elif command == "created_items":
         """
         Prints the number of items created so far.
         """
         num_items = Item.get_number_of_created_items()
         print(f"{num_items} Items created so far.")
+        
     elif command == "exit":
         break
     else:

@@ -44,7 +44,10 @@ class CargoCrate(Item):
         
         :return: True if content type is "food" or "medical", False otherwise.
         """
-        return self._content_type in ["food", "medical"]
+        if  self._content_type in ["food", "medical"]:
+            return True
+        else:
+            return False
 
     def print_details(self) -> None:
         """
@@ -54,7 +57,3 @@ class CargoCrate(Item):
         print(f"Weight: {self._weight_kg} kg,")
         print(f"Total cost: {self.get_price()} credits.")
         print(f"Critical: {self.is_critical()}.")
-
-    """
-    Your code goes here!
-    """

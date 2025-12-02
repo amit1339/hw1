@@ -10,7 +10,6 @@ class Item(abc.ABC):
     upon creation.
     """
     
-    # Static counter to track the number of items created
     _item_counter: int = 0
 
     def __init__(self, name: str, price: float) -> None:
@@ -60,43 +59,23 @@ class Item(abc.ABC):
 
     @abc.abstractmethod
     def store(self, module_name: str) -> None:
-        """
-        Stores the item in the specified station module.
-        
-        :param module_name: the name of the station module where the item is stored.
-        """
         pass
 
     @abc.abstractmethod
     def get_category(self) -> str:
-        """
-        Returns the item's category.
-        
-        :return: a string representing the item's category (e.g., "LIFE_SUPPORT", "LOGISTICS", "SCIENCE").
-        """
         pass
 
     @abc.abstractmethod
     def print_details(self) -> None:
-        """
-        Prints full details for the item.
-        """
         pass
 
     @abc.abstractmethod
     def is_critical(self) -> bool:
-        """
-        Determines if the item is critical for the station operation.
-        
-        :return: True if the item is critical, False otherwise.
-        """
         pass
 
     @staticmethod
     def get_number_of_created_items() -> int:
         """
-        Returns the total number of Item instances created so far.
-        
-        :return: the total count of all items created (including all subclasses).
+        This method returns the total number of Item instances that were created so far (including all subclasses).
         """
         return Item._item_counter
